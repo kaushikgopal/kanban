@@ -48,4 +48,5 @@ group :test do
   gem "capybara"
   gem "database_cleaner"
   gem "launchy"
+  gem 'rb-fsevent', '~> 0.9.1'
 end
