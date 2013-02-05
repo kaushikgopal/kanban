@@ -64,5 +64,18 @@ module Kanban
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Ignore the default Test::Unit test suite and modify to custom TDD environment
+    config.generators do |g|
+      g.test_framework :rspec,
+          fixtures: true,
+          view_specs: false,
+          helper_spec: false,
+          routing_spec: false,
+          controller_spec: true,
+          request_spec: true
+      g.fixture_replacement :factory_girl, dir: "spec/factories"
+    end
+
   end
 end
