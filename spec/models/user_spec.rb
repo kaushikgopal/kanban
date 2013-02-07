@@ -10,7 +10,7 @@ describe User do
       build(:user, username: nil).should_not be_valid
     end
     it "check for either email address or twiki_name" do
-      build(:user, email: nil, twiki_name: nil).should_not be_valid
+      build(:user_without_email, twiki_name: nil).should_not be_valid
     end
   end
 

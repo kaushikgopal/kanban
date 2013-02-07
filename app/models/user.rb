@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
   attr_accessible :username, :preferred_name, :twiki_name, :email
 
-  validates_presence_of :username, message: "You need to have a username"
+  has_many :news_items
+  validates_associated :news_items
+
+  validates :username, :presence => { :message => "You need to have a username" }
+  
   validate :email_or_twiki
 
   private
