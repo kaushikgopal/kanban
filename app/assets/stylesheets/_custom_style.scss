@@ -1,0 +1,58 @@
+/*
+* SkeleSass V1.0
+* Kaushik Gopal
+* https://github.com/kaushikgopal/SkeleSass
+*
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+*/
+
+/* Table of Content
+==================================================
+  #Site wide styles
+  #Page specific styles */
+
+/* #Site wide styles
+================================================== */
+
+
+// ====================================================
+//   Navigation Menu
+// ====================================================
+
+#main_nav_menu{ 
+	background-color: $cream;
+	
+	ul {
+		@include clearfix-micro();	
+		li { 
+			float: left;
+			width: 33%;
+			text-align:center;
+			margin-bottom: 0;
+			
+			a { 
+				display: block;
+				width: 100%;
+
+				color: $maroon;
+				font-size: 3em;
+				text-decoration: none;
+
+				padding: 1em 0;
+
+				&.selected, &:hover{
+					background-color: $maroon;
+					color: $cream;	
+				}
+
+			}
+		}
+
+	}
+
+}
+
+/* #Page specific styles
+================================================== */
+

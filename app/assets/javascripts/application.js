@@ -13,3 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+//= require equalize.min.js
+
+
+
+// Main Navigation Menu equalize height
+jQuery(document).ready(function($) {
+	
+});
