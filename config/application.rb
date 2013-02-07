@@ -61,6 +61,7 @@ module Kanban
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    # config.assets.paths +=%W("#{Rails.root}/app/assets/stylesheets/vendor" "#{Rails.root}/app/assets/javascripts/vendor")
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
