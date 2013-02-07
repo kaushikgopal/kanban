@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe NewsItem do
-  let(:user){create(:user)}
+  # let(:user){create(:user)}
 
   it "has a valid factory" do
     build(:news_item).should be_valid
