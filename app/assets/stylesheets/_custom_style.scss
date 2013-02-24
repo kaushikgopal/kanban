@@ -15,6 +15,35 @@
 /* #Site wide styles
 ================================================== */
 
+// jQuery UI styling
+.ui-dialog{
+	border: 1px solid gray;
+	background: $cream;
+	padding: 1em 1em 0 1em;
+	
+	label{text-align: center;font-size: 1.2em;}
+}
+.ui-dialog-titlebar{
+	margin: 0.1em 0 0.5em 0;
+	
+	text-align: center;
+	font-weight: bold;
+	font-size: 2em;
+}
+
+button.ui-dialog-titlebar-close{
+	@include hide-text();	
+	margin-top: -5px;
+	background:url(close.png);
+	background-size: $icon-medium $icon-medium;
+	background-repeat:no-repeat;
+	cursor:pointer;
+	width: $icon-medium;
+	height: $icon-medium;
+	border: none;
+	float: right;
+}
+
 
 // ====================================================
 //   Navigation Menu
@@ -43,7 +72,9 @@
 
 				&.selected, &:hover{
 					background-color: $maroon;
-					color: $cream;	
+					color: $dark-cream;
+				}
+				&.selected{
 				}
 
 			}
@@ -55,4 +86,81 @@
 
 /* #Page specific styles
 ================================================== */
+
+
+#create_news_item_dialog{
+	#news_item_content{
+		height: 10em;
+		width: 25.8em;
+		font-size: 1.3em;
+	}
+	#create_news_item{
+		margin-bottom: 0;
+		width: 100%;
+		text-align: center;
+	}
+}
+
+.news_item{
+		@include clearfix-micro;
+
+		margin: 2em auto;
+		
+		width: 70%;
+		
+		.metadata, .content{
+			background: $cream;
+			border: 2px solid $dark-cream;
+			height: 150px;
+			padding: 1em;
+		}
+
+		.metadata{
+			float: left;
+			width: 10%;
+			
+			.profile_info { 
+				clear: both; 
+				height: 90px;
+				border: 1px solid gray;
+			}
+			.datetime{
+				text-align: center;
+				.date{}
+				.time{}
+			}
+		}
+		.content{
+			float: right;
+			width: 89%;
+			font-size: 1.4em;
+			line-height: 1.2em;
+		}
+}
+
+
+
+// Stream page ----------------------
+#stream_content{
+	h1{
+		text-align: center; 
+		color: $dark-cream;
+	}	
+	
+	#new_news_item{
+		margin-right: 1em;
+		position: relative;
+		float: right;
+		top: -4em;
+		
+		@include hide-text();
+		background:url(pen.png);
+		background-size: $icon-large $icon-large;
+		background-repeat:no-repeat;
+		cursor:pointer;
+		width: $icon-large;
+		height: $icon-large;
+	}
+
+}
 

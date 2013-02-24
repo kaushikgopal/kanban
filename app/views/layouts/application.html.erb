@@ -2,9 +2,12 @@
 <html>
 <head>
   <title>CMUSV Billboard</title>
+
   <link href='http://fonts.googleapis.com/css?family=Kreon:400,700,300' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag 	"http://code.jquery.com/jquery-1.9.1.min.js",
+  														"http://code.jquery.com/ui/1.10.1/jquery-ui.js",
+  														"application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>

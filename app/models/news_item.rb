@@ -5,4 +5,6 @@ class NewsItem < ActiveRecord::Base
   validates_presence_of :user, :message => "News item needs a creator" 
   
   validates :content, :presence => { :message => "Your news item should have some content" }
+
+  scope :ordered, order("created_at DESC")
 end

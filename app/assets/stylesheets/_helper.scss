@@ -30,9 +30,14 @@
 //   Variable Definitions
 // ====================================================
 
+$icon-large: 50px;
+$icon-medium: 30px;
+
+
 // ---- Color Palette ---------------------------------
 $maroon: #85000A;
 $cream: #F0EDE4;
+$dark-cream: #FFDAB4;
 
 // ---- Type definitions ------------------------------
 
@@ -56,7 +61,6 @@ $icon: "entypo-social";
 
 
 // ---- micro clearfix (http://nicolasgallagher.com/micro-clearfix-hack)
-
 @mixin clearfix-micro() {
   & {
     *zoom: 1;
@@ -70,6 +74,8 @@ $icon: "entypo-social";
     clear: both;
   }
 }
+
+@import "compass/utilities/text/replacement";
 
 // ====================================================
 //   Misc Class helpers

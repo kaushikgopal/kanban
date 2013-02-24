@@ -1,0 +1,7 @@
+//alert("ajax works");
+
+// add the flash message
+//$("#stream_content").before('<div id="flash_notice"><%# escape_javascript(flash.discard(:notice)) %></div>');
+
+$("#stream_content").append("<%= escape_javascript(render(:partial => 'news_item')) %>");
+$("#create_news_item_dialog").dialog("close");

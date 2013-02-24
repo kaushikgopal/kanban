@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe User do
+  
   it "has a valid factory" do
     build(:user).should be_valid
   end
@@ -12,6 +13,11 @@ describe User do
     it "check for either email address or twiki_name" do
       build(:user_without_email, twiki_name: nil).should_not be_valid
     end
+  end
+
+  it "should check for unique username" do
+    u = create(:user)
+    build(:user, username: u.username).should_not be_valid
   end
 
 end

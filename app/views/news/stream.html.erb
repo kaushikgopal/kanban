@@ -1,0 +1,17 @@
+<% @page_title = "stream" %>
+
+<div id="stream_content">
+
+<h1>This is happening in campus NOW... </h1>
+
+<%- flash.each do |name, msg| -%>
+	<%= content_tag :div, msg, :id => "flash_#{name}" %>
+<%- end -%>
+
+<a href="" id="new_news_item">Add news item</a>
+<%= render partial: "form" %>
+<%= render partial: "news_item" %>
+
+</div>
+
+
