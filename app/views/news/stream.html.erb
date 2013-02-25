@@ -4,14 +4,19 @@
 
 <h1>This is happening in campus NOW... </h1>
 
-<%- flash.each do |name, msg| -%>
-	<%= content_tag :div, msg, :id => "flash_#{name}" %>
-<%- end -%>
+<div id="flash">
+    <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
+</div>
 
 <a href="" id="new_news_item">Add news item</a>
 <%= render partial: "form" %>
-<%= render partial: "news_item" %>
 
+<div id="news_items_wrapper">
+  <% @stream.each do |ni| %>
+      <%= render :partial => "news_item", :locals => {:object => ni} %>
+  <% end %>
 </div>
 
-
+</div>

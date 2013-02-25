@@ -94,9 +94,9 @@ describe NewsController do
 		end
 	
 		describe "POST #create" do
-			xit "should create a news_item" do
+			it "should create a news_item" do
 				expect{
-					post :create	
+					post :create, news_item: attributes_for(:news_item)	
 				}.to change(NewsItem, :count).by(1)
 		  end
 		end
