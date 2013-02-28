@@ -9,8 +9,8 @@ class NewsController < ApplicationController
 	end
 	def stream
 		# @stream = NewsItem.find(:all, order: "created_at DESC")
-		@stream = NewsItem.ordered
 		# @stream = NewsItem.order("created_at DESC")
+		@stream = NewsItem.ordered
 	end	
 
 	def new
@@ -34,10 +34,8 @@ class NewsController < ApplicationController
 	def destroy
 		@news_item = NewsItem.find(params[:id])
 		@news_item.destroy
-
 		respond_to do |format|
 			format.js { render "delete" }
-			# format.html { render "delete" }
 		end
 	end
 
@@ -47,6 +45,5 @@ class NewsController < ApplicationController
 		user = User.find_by_username('kaushikgopal')
     user ||= User.create(username: 'kaushikgopal', email: 'tmp@kaush.co')
 	end
-
 
 end

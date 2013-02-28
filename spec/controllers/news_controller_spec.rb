@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'spec_helper' # TODO convert this test to not use Rails
 
 describe NewsController do
 	context "News" do
@@ -13,7 +13,6 @@ describe NewsController do
 	    	response.should render_template :index
 	    end
 		end	
-
 		# basic show 
 		describe 'GET #show' do
 			let(:news_item){create(:news_item)}
@@ -38,7 +37,6 @@ describe NewsController do
 				assigns(:news_item).should == news_item
 			end
 		end
-
 		# basic show using advanced mocking & stubbing
 		describe 'GET #show - advanced mocking & stubbing' do
 			before(:each) do
@@ -53,23 +51,16 @@ describe NewsController do
 				assigns(:news_item).should == @mock_news_item
 			end
 		end
-
 	end
 
-	# TODO convert this test to not use Rails
 	# stream functionality
 	context "Streaming News" do
 		describe "GET #stream" do
 		  it "should assign news items to @stream in the descending order" do
-		    
+		    # TODO use mocking and stubbing here
 		    news_item_x = create(:news_item, created_at: DateTime.new(2012,01,01))
 		    news_item_y= create(:news_item, created_at: DateTime.new(2011,01,01))
 		    news_item_z= create(:news_item, created_at: DateTime.new(2012,03,01))
-		    
-		    # news_item1 = stub(NewsItem, :created_at => DateTime.now)
-		    # news_item2 = stub(NewsItem, :created_at => DateTime.now)
-		    # NewsItem.stub(:find) {}
-		    
 		    get :stream
 		    # .all added to avoid comparison failure between groups of NewsItem objects an ActiveRel group.
 		    expect(assigns(:stream).all).to eql([news_item_z, news_item_x, news_item_y])
@@ -79,7 +70,6 @@ describe NewsController do
 				response.should render_template :stream
 			end
 		end
-		
 		describe "GET #new" do
 		  before(:each) do
 		  	get :new
@@ -91,7 +81,6 @@ describe NewsController do
 		    assigns(:news_item).should be_a_new(NewsItem)
 		  end
 		end
-	
 		describe "POST #create" do
 			it "should create a news_item" do
 				expect{
@@ -109,8 +98,6 @@ describe NewsController do
 				post :create, news_item: news_item
 		  end
 		end
-
-		
 		describe "DELETE #destroy" do
 		  it "should delete a news_item" do
 		  	news_item = mock_news_item
@@ -121,16 +108,13 @@ describe NewsController do
 		  	delete :destroy, id: news_item.id
 		  end
 		end
-
 	end
 
 	protected
-
 	def mock_user
 		 @mock_user ||= mock_model(User, {  :username => "User Name",
 																	      :email => " iam@mock.com",
-																	      :news_items => [mock_news_item]
-																	    })
+																	      :news_items => [mock_news_item] })
 	end
 	def mock_news_item
 		 @mock_news_item ||= mock_model(NewsItem)

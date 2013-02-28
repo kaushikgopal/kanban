@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def flash_display
     response = ""
     flash.each do |name, msg|
@@ -8,5 +7,4 @@ module ApplicationHelper
     flash.discard
     response
   end
-
 end

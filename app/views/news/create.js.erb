@@ -1,12 +1,9 @@
 //alert("ajax works");
-
-// add the flash message
-//$("#stream_content").before('<div id="flash_notice"><%# escape_javascript(flash.discard(:notice)) %></div>');
 $("#create_news_item_dialog").dialog("close");
 
 <% if !flash[:error]%>
 $("#news_items_wrapper").prepend("<%= escape_javascript(render :partial => 'news_item', :locals => {:object => @news_item }) %>");
 <% end %>
 
+// add the flash message
 $('#flash').html("<%= escape_javascript raw(flash_display) %>");
-

@@ -6,6 +6,7 @@ jQuery.ajaxSetup({
 
 jQuery(document).ready(function($) {
 
+	//  ------ jQuery UI Dialog box ----------------
 	// initialize the dialog
 	$("#create_news_item_dialog").dialog({
 		autoOpen : false, 
@@ -18,17 +19,16 @@ jQuery(document).ready(function($) {
 	  return false;
 	});
 	
-
+	// ------- Add a news item via ajax  -----------
 	$("#submit_news_item").submit(function() {
 		$.post($(this).attr("action"), $(this).serialize(), null, "script");
 		return false; // stop the default submit action
 	});
 	
-	
+	// ------- Delete a news item via ajax  -----------
 	// $(".delete_news_item").click(function() {
 	// 		e.preventDefault();
   // 		$.post($(this).attr('href'), { _method: 'delete' });
 	// });
-
 
 });
