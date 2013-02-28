@@ -99,6 +99,16 @@ describe NewsController do
 					post :create, news_item: attributes_for(:news_item)	
 				}.to change(NewsItem, :count).by(1)
 		  end
+		  it "should create a news_item - advanced mocking and stubbing" do
+		  	# build the mocks
+		  	# see http://stackoverflow.com/questions/3871966/testing-a-has-one-relationship for why a mock isn't suitable here
+		  	news_item = NewsItem.new
+		  	news_item.stub(:save).and_return(true)
+
+				NewsItem.should_receive(:new).and_return(news_item)
+				news_item.should_receive(:save)
+				post :create, news_item: news_item
+		  end
 		end
 
 	end
