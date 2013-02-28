@@ -11,5 +11,6 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require_tree .
+//= require jquery_ujs
 //= require news_items
 

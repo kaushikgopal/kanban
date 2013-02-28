@@ -15,7 +15,7 @@ Kanban::Application.routes.draw do
     resources :news
     match "/news" => "news#index", :as => "news"
     match "/stream" => "news#stream", :as => "stream"
-    match "/news/destroy/:id" => "news#destroy"
+    # match "/news/destroy/:id" => "news#destroy"
 
   
 

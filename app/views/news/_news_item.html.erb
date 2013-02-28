@@ -8,6 +8,6 @@
 		</div>
 	</div>
 	<div class="content"><%= object.content %></div>
-	<a href="/news/destroy/<%= object.id %>" class="delete_news_item">Delete</a>
+	<%= link_to "Delete", "/news/#{object.id}", :confirm => 'Are you sure?', :remote => true, :class=>'delete_news_item', :method => :delete %>
 </div>
 <% end %>

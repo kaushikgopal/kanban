@@ -24,13 +24,11 @@ jQuery(document).ready(function($) {
 		return false; // stop the default submit action
 	});
 	
-	$(".delete_news_item").click(function() {
-		
-		// TODO: this needs modification to proper ajax scripting
-		$.delete($(this).attr("href"), $(this).serialize(), null, "script");
-
-		return false;
-	});
+	
+	// $(".delete_news_item").click(function() {
+	// 		e.preventDefault();
+  // 		$.post($(this).attr('href'), { _method: 'delete' });
+	// });
 
 
 });
