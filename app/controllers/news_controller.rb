@@ -43,14 +43,8 @@ class NewsController < ApplicationController
 
 	def get_tmp_user
 		user = User.find_by_username('kaushikgopal')
-    if user.blank?
-      User.create(username: 'kaushikgopal', email: 'tmp@kaush.co')
-      user = User.find_by_username('kaushikgopal')
-    end
-    return user
+    user ||= User.create(username: 'kaushikgopal', email: 'tmp@kaush.co')
 	end
-
-
 
 
 end
