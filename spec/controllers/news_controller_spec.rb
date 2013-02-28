@@ -56,15 +56,6 @@ describe NewsController do
 	# stream functionality
 	context "Streaming News" do
 		describe "GET #stream" do
-		  it "should assign news items to @stream in the descending order" do
-		    # TODO use mocking and stubbing here
-		    news_item_x = create(:news_item, created_at: DateTime.new(2012,01,01))
-		    news_item_y= create(:news_item, created_at: DateTime.new(2011,01,01))
-		    news_item_z= create(:news_item, created_at: DateTime.new(2012,03,01))
-		    get :stream
-		    # .all added to avoid comparison failure between groups of NewsItem objects an ActiveRel group.
-		    expect(assigns(:stream).all).to eql([news_item_z, news_item_x, news_item_y])
-		  end	
 			it "renders the stream view" do
 				get :stream
 				response.should render_template :stream
