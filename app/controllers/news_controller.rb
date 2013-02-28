@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
-	respond_to :json, :html
-	
+	respond_to :js, :html
+
 	def index
 		@news_items = NewsItem.all		
 	end
@@ -11,10 +11,6 @@ class NewsController < ApplicationController
 		# @stream = NewsItem.find(:all, order: "created_at DESC")
 		@stream = NewsItem.ordered
 		# @stream = NewsItem.order("created_at DESC")
-    respond_to do |format|
-      format.js
-      format.html
-    end
 	end	
 
 	def new
@@ -38,6 +34,15 @@ class NewsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@news_item = NewsItem.find(params[:id])
+		@news_item.destroy
+
+		respond_to do |format|
+			format.js { render "delete" }
+			format.html { render "delete" }
+		end
+	end
 
 	private
 

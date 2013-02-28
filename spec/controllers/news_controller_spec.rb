@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe NewsController do
-
 	context "News" do
 	  describe 'GET #index' do
 	    it "populates an array of news items" do
@@ -111,13 +110,25 @@ describe NewsController do
 		  end
 		end
 
+		
+		describe "DELETE #destroy" do
+		  it "should delete a news_item" do
+		  	news_item = mock_news_item
+		  	news_item.stub!(:destroy).and_return(true)
+
+		  	NewsItem.should_receive(:find).and_return(news_item)
+		  	news_item.should_receive(:destroy).and_return(news_item)
+		  	delete :destroy, id: news_item.id
+		  end
+		end
+
 	end
 
 	protected
 
 	def mock_user
 		 @mock_user ||= mock_model(User, {  :username => "User Name",
-																	      :email => "iam@mock.com",
+																	      :email => " iam@mock.com",
 																	      :news_items => [mock_news_item]
 																	    })
 	end

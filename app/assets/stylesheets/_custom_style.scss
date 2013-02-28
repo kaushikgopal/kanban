@@ -105,7 +105,6 @@ button.ui-dialog-titlebar-close{
 		@include clearfix-micro;
 
 		margin: 2em auto;
-		
 		width: 70%;
 		
 		.metadata, .content{
@@ -131,8 +130,9 @@ button.ui-dialog-titlebar-close{
 			}
 		}
 		.content{
-			float: right;
-			width: 89%;
+			float: left;
+			margin-left: 10px;
+			width: 84%;
 			font-size: 1.4em;
 			line-height: 1.2em;
 		}
@@ -147,19 +147,27 @@ button.ui-dialog-titlebar-close{
 		color: $dark-cream;
 	}	
 	
-	#new_news_item{
+	#new_news_item {
 		margin-right: 1em;
 		position: relative;
 		float: right;
 		top: -4em;
 		
 		@include hide-text();
-		background:url(pen.png);
+		background: url('pen.png') no-repeat right top;
 		background-size: $icon-large $icon-large;
-		background-repeat:no-repeat;
 		cursor:pointer;
 		width: $icon-large;
 		height: $icon-large;
+	}
+	.delete_news_item{
+	 	float: left;
+	 	margin: 50px 0 0 10px;
+	 	@include hide-text();
+	 	background: url('close.png') no-repeat right top;
+	 	width: $icon-large;
+		height: $icon-large;
+		
 	}
 
 }

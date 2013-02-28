@@ -1,13 +1,13 @@
 <% if !object.blank? %> 
-<div class="news_item">
+<div class="news_item" id="ni_<%= object.id %>">
 	<div class="metadata">
 		<div class="profile_info"><%= object.user.username %></div>
 		<div class="datetime">
 			<div class="date"><%= object.created_at.strftime('%d %b %Y') %></div>
 			<div class="time"><%= object.created_at.strftime('%I:%M %p')  %></div>
-
 		</div>
 	</div>
 	<div class="content"><%= object.content %></div>
+	<a href="/news/destroy/<%= object.id %>" class="delete_news_item">Delete</a>
 </div>
 <% end %>
