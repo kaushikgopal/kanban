@@ -22,16 +22,13 @@ class NewsController < ApplicationController
 		@user = get_tmp_user
 		@user.news_items << @news_item
 
-    respond_to do |format|
-			if !@news_item.save
-        content = "Something went wrong - "
-        @news_item.errors.full_messages.each { |msg| content += "#{msg} : " }
-        flash[:error] = content
-      else
-        #flash[:notice] = "News item was successfully created"
-      end
-      format.js
-		end
+		if !@news_item.save
+      content = "Something went wrong - "
+      @news_item.errors.full_messages.each { |msg| content += "#{msg} : " }
+      flash[:error] = content
+    else
+      #flash[:notice] = "News item was successfully created"
+    end
 	end
 
 	def destroy
@@ -40,7 +37,7 @@ class NewsController < ApplicationController
 
 		respond_to do |format|
 			format.js { render "delete" }
-			format.html { render "delete" }
+			# format.html { render "delete" }
 		end
 	end
 
