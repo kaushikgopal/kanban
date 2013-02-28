@@ -106,11 +106,10 @@ describe NewsController do
 	protected
 
 	def mock_user
-		 @mock_user ||= mock_model(User, {
-      :username => "User Name",
-      :email => "iam@mock.com",
-      :news_items => [mock_news_item]
-    })
+		 @mock_user ||= mock_model(User, {  :username => "User Name",
+																	      :email => "iam@mock.com",
+																	      :news_items => [mock_news_item]
+																	    })
 	end
 	def mock_news_item
 		 @mock_news_item ||= mock_model(NewsItem)
