@@ -1,9 +1,13 @@
 <% @page_title = "news" %>
-<h1>NewsItems#index</h1>
-<p>Find me in app/views/news_items/index.html.erb</p>
 
-<ul>
-	<% @news_items.each do |ni| %>
-	<li><%= ni.content %></li>
-	<% end  %>
-</ul>	
+<div id="news_content">
+
+<h1>Bulletin Board - News</h1>
+
+<div id="news_items_wrapper">
+  <% @news_items.each do |ni| %>
+      <%= render :partial => "news_item", :locals => {:object => ni} %>
+  <% end %>
+</div>
+
+</div>
