@@ -1,4 +1,4 @@
-<% if !object.blank? %> 
+<% if !object.blank? %>
 <div class="news_item" id="ni_<%= object.id %>">
 	<div class="metadata">
 		<div class="profile_info"><%= object.user.username %></div>
@@ -7,7 +7,19 @@
 			<div class="time"><%= object.created_at.strftime('%I:%M %p')  %></div>
 		</div>
 	</div>
-	<div class="content"><%= object.content %></div>
+	<div class="content">
+		<%= object.content %>
+		<% unless object.tags.blank? %>
+			<div class="tags">
+					<% object.tags.each do |tag| %>
+						<div class="tag">
+							<%= tag.tag_name %>
+						</div>
+					<% end %>
+			</div>
+		<% end %>
+
+	</div>
 	<%= link_to "Delete", "/news/#{object.id}", :confirm => 'Are you sure?', :remote => true, :class=>'delete_news_item', :method => :delete %>
 </div>
 <% end %>
