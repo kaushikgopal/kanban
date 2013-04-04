@@ -99,6 +99,10 @@ button.ui-dialog-titlebar-close{
 		width: 100%;
 		text-align: center;
 	}
+	#tag_names{
+		float: left;
+		width: 100%;
+	}
 }
 
 .news_item{
@@ -116,7 +120,7 @@ button.ui-dialog-titlebar-close{
 
 		.metadata{
 			float: left;
-			width: 10%;
+			width: 130px;
 			
 			.profile_info { 
 				clear: both; 
@@ -132,7 +136,7 @@ button.ui-dialog-titlebar-close{
 		.content{
 			float: left;
 			margin-left: 10px;
-			width: 84%;
+			width: 75%;
 			font-size: 1.4em;
 			line-height: 1.2em;
 		}
@@ -147,6 +151,7 @@ button.ui-dialog-titlebar-close{
 		color: $dark-cream;
 	}	
 	
+
 	#new_news_item {
 		margin-right: 1em;
 		position: relative;

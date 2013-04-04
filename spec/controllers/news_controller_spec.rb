@@ -2,6 +2,7 @@ require 'spec_helper' # TODO convert this test to not use Rails
 
 describe NewsController do
 	context "News" do
+
 	  describe 'GET #index' do
 	    it "populates an array of news items" do
 	    	news_item = create(:news_item)
@@ -12,11 +13,12 @@ describe NewsController do
 	    	get :index
 	    	response.should render_template :index
 	    end
-		end	
-		# basic show 
+		end
+
+		# basic show
 		describe 'GET #show' do
 			let(:news_item){create(:news_item)}
-			it "renders the :show view" do			
+			it "renders the :show view" do
 				get :show, id: news_item
 				response.should render_template :show
 			end
@@ -27,13 +29,13 @@ describe NewsController do
 		end
 		# basic show using mocking & stubbing
 		describe 'GET #show using basic mocking & stubbing' do
-			it "assigns the requested news item to @news_item" do			
+			it "assigns the requested news item to @news_item" do
 				# creating a mock news_item
 				news_item = double(NewsItem)
 				# stub ActiveRecord's find method on the NewsItem model itself
 				NewsItem.stub(:find) { news_item }
 
-				get :show, id: news_item 
+				get :show, id: news_item
 				assigns(:news_item).should == news_item
 			end
 		end
@@ -44,7 +46,7 @@ describe NewsController do
 				NewsItem.stub(:find) { mock_news_item }
 				get :show, id: @mock_news_item
 			end
-			it "renders the :show view" do			
+			it "renders the :show view" do
 				response.should render_template :show
 			end
 			it "assigns the requested news item to @news_item" do
@@ -75,18 +77,23 @@ describe NewsController do
 		describe "POST #create" do
 			it "should create a news_item" do
 				expect{
-					post :create, news_item: attributes_for(:news_item)	
+					post :create, news_item: attributes_for(:news_item)
 				}.to change(NewsItem, :count).by(1)
 		  end
 		  it "should create a news_item - advanced mocking and stubbing" do
 		  	# build the mocks
 		  	# see http://stackoverflow.com/questions/3871966/testing-a-has-one-relationship for why a mock isn't suitable here
-		  	news_item = NewsItem.new
-		  	news_item.stub(:save).and_return(true)
+		  	#news_item = NewsItem.new
+		  	#news_item.stub(:save).and_return(true)
+        news_item = mock_model(NewsItem).as_null_object
 
-				NewsItem.should_receive(:new).and_return(news_item)
-				news_item.should_receive(:save)
-				post :create, news_item: news_item
+        tag = mock_model(Tag, :slug => "tag_slug", :save => true)
+        Tag.stub(:new).and_return(tag)
+
+		  	Tag.should_receive(:new).exactly(3).times
+				NewsItem.should_receive(:new).exactly(1).times.and_return(news_item)
+				news_item.should_receive(:save).exactly(1).times
+				post :create, news_item: news_item, tag_names: "Tag 1, Tag 2, Tag 3"
 		  end
 		end
 		describe "DELETE #destroy" do

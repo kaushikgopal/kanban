@@ -20,7 +20,24 @@ class NewsController < ApplicationController
 	def create
 		@news_item = NewsItem.new(params[:news_item])
 		@user = get_tmp_user
-		@user.news_items << @news_item
+    @news_item.user_id = @user.id
+
+		if params[:tag_names]
+			tags = []
+			params[:tag_names].split(', ').each do |tag_name|
+				tag = Tag.new(tag_name: tag_name)
+        existing_tag = Tag.where(slug: tag.slug)
+				if existing_tag.count == 0
+					tag.save 
+				else
+					tag = existing_tag.first
+				end	
+				tags << tag
+			end
+			@news_item.tags.concat tags
+		end
+		
+#		@news_item.user = @user
 
 		if !@news_item.save
       content = "Something went wrong - "

@@ -4,11 +4,13 @@ require 'faker'
 
 FactoryGirl.define do
 
-  factory :user do
-    sequence(:username){ |n| "user_#{n}" }
-    sequence(:email) {|n| "email#{n}@factory.com" }
+
+  factory :user do |user|
+    sequence(:username) { |n| "user_#{n}" }
+    sequence(:email) { |n| "#{n}@factory.com" }
     # username        Faker::Internet.user_name
     # email           Faker::Internet.safe_email
+
     factory :user_without_email do
       email nil
     end
@@ -17,9 +19,24 @@ FactoryGirl.define do
       twiki_name      Faker::Internet.user_name
     end
   end
+
   factory :news_item do
-    association :user
     content Faker::Lorem.paragraph
+    user
   end
+
+  factory :news_item_with_tag, :class => NewsItem do
+    content Faker::Lorem.paragraph
+    user
+    after(:build) do |nit|
+      nit.tags << FactoryGirl.create(:tag)
+    end
+  end
+
+  factory :tag do
+    sequence(:tag_name) { |n| "Tag #{n}"}
+    # sequence(:slug){ |n| "tag_#{n}"}
+  end
+
 
 end
