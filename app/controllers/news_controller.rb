@@ -2,7 +2,7 @@ class NewsController < ApplicationController
 	respond_to :js, :html
 
 	def index
-		@news_items = NewsItem.all		
+		@news_items = NewsItem.all
 	end
 	def show
 		@news_item = NewsItem.find(params[:id])
@@ -11,32 +11,34 @@ class NewsController < ApplicationController
 		# @stream = NewsItem.find(:all, order: "created_at DESC")
 		# @stream = NewsItem.order("created_at DESC")
 		@stream = NewsItem.ordered
-	end	
+	end
 
 	def new
 		@news_item = NewsItem.new
 	end
-	
+
 	def create
 		@news_item = NewsItem.new(params[:news_item])
 		@user = get_tmp_user
     @news_item.user_id = @user.id
 
+
 		if params[:tag_names]
 			tags = []
-			params[:tag_names].split(', ').each do |tag_name|
+	    tag_names = params[:tag_names].split(', ')
+			tag_names.each do |tag_name|
 				tag = Tag.new(tag_name: tag_name)
         existing_tag = Tag.where(slug: tag.slug)
 				if existing_tag.count == 0
-					tag.save 
+					tag.save
 				else
 					tag = existing_tag.first
-				end	
+				end
 				tags << tag
 			end
 			@news_item.tags.concat tags
 		end
-		
+
 #		@news_item.user = @user
 
 		if !@news_item.save
