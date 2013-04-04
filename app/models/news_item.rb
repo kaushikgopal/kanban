@@ -3,12 +3,13 @@ class NewsItem < ActiveRecord::Base
 
   has_many :tags
   belongs_to :user
-  
-  validates_presence_of :user, :message => "News item needs a creator" 
+
+  validates_presence_of :user, :message => "News item needs a creator"
   validates :content, :presence => { :message => "Your news item should have some content" }
   validate :max_tag_limit, if: :tags
 
   scope :ordered, order("created_at DESC")
+  scope :news, joins(:tags).where("tags.tag_name = 'news'")
 
   private
 
