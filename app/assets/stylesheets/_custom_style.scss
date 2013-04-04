@@ -20,19 +20,19 @@
 	border: 1px solid gray;
 	background: $cream;
 	padding: 1em 1em 0 1em;
-	
+
 	label{text-align: center;font-size: 1.2em;}
 }
 .ui-dialog-titlebar{
 	margin: 0.1em 0 0.5em 0;
-	
+
 	text-align: center;
 	font-weight: bold;
 	font-size: 2em;
 }
 
 button.ui-dialog-titlebar-close{
-	@include hide-text();	
+	@include hide-text();
 	margin-top: -5px;
 	background:url(close.png);
 	background-size: $icon-medium $icon-medium;
@@ -49,18 +49,18 @@ button.ui-dialog-titlebar-close{
 //   Navigation Menu
 // ====================================================
 
-#main_nav_menu{ 
+#main_nav_menu{
 	background-color: $cream;
-	
+
 	ul {
-		@include clearfix-micro();	
-		li { 
+		@include clearfix-micro();
+		li {
 			float: left;
 			width: 33%;
 			text-align:center;
 			margin-bottom: 0;
-			
-			a { 
+
+			a {
 				display: block;
 				width: 100%;
 
@@ -110,7 +110,7 @@ button.ui-dialog-titlebar-close{
 
 		margin: 2em auto;
 		width: 70%;
-		
+
 		.metadata, .content{
 			background: $cream;
 			border: 2px solid $dark-cream;
@@ -121,9 +121,9 @@ button.ui-dialog-titlebar-close{
 		.metadata{
 			float: left;
 			width: 130px;
-			
-			.profile_info { 
-				clear: both; 
+
+			.profile_info {
+				clear: both;
 				height: 90px;
 				border: 1px solid gray;
 			}
@@ -139,6 +139,20 @@ button.ui-dialog-titlebar-close{
 			width: 75%;
 			font-size: 1.4em;
 			line-height: 1.2em;
+			.tags {
+				@include clearfix-micro();
+				.tag {
+					float: left;
+					border: 1px solid $dark-cream;
+					background-color: $dark-cream;
+
+					font-size: 0.8em;
+
+					padding: 5px;
+					margin-right: 10px;
+
+				}
+			}
 		}
 }
 
@@ -147,17 +161,17 @@ button.ui-dialog-titlebar-close{
 // Stream page ----------------------
 #stream_content{
 	h1{
-		text-align: center; 
+		text-align: center;
 		color: $dark-cream;
-	}	
-	
+	}
+
 
 	#new_news_item {
 		margin-right: 1em;
 		position: relative;
 		float: right;
 		top: -4em;
-		
+
 		@include hide-text();
 		background: url('pen.png') no-repeat right top;
 		background-size: $icon-large $icon-large;
@@ -172,7 +186,7 @@ button.ui-dialog-titlebar-close{
 	 	background: url('close.png') no-repeat right top;
 	 	width: $icon-large;
 		height: $icon-large;
-		
+
 	}
 
 }
