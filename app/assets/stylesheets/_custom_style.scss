@@ -17,6 +17,8 @@
 
 h1{ text-align: center; color: $dark-cream; }
 
+
+
 // jQuery UI styling
 .ui-dialog{
 	border: 1px solid gray;
@@ -44,6 +46,31 @@ button.ui-dialog-titlebar-close{
 	height: $icon-medium;
 	border: none;
 	float: right;
+}
+
+// Flash error boxes
+
+#flash {
+	width: 80%;
+	margin: 0 auto;
+
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+
+	#flash_info, #flash_error {
+		background-color: $yellow-light;
+		border: 0.2em solid $yellow-dark;
+		padding: 0.7em;
+	}
+	#flash_error {
+		background-color: $pink;
+		border: 0.2em solid red;
+		color: red;
+	}
+
+
+
 }
 
 
