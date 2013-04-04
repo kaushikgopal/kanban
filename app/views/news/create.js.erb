@@ -1,7 +1,7 @@
 //alert("ajax works");
 $("#create_news_item_dialog").dialog("close");
 
-<% if !flash[:error]%>
+<% if !!!flash[:error]%>
 $("#news_items_wrapper").prepend("<%= escape_javascript(render :partial => 'news_item', :locals => {:object => @news_item }) %>");
 <% end %>
 
