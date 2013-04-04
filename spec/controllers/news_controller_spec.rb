@@ -4,11 +4,14 @@ describe NewsController do
 	context "News" do
 
 	  describe 'GET #index' do
-	    it "populates an array of news items" do
-	    	news_item = create(:news_item)
+	    it "populates an array of news items tagged with 'news'" do
+	    	news_item = FactoryGirl.create(:news_item)
+	    	news_item_with_news_tag = FactoryGirl.create(:news_item_with_news_tag)
 	    	get :index
-	    	assigns(:news_items).should == [news_item]
+	    	expect(assigns(:news_items)).to include(news_item_with_news_tag)
+	    	expect(assigns(:news_items)).not_to include(news_item)
 	    end
+
 	    it "renders the :index view" do
 	    	get :index
 	    	response.should render_template :index
