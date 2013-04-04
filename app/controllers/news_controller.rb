@@ -22,34 +22,34 @@ class NewsController < ApplicationController
 		@user = get_tmp_user
     @news_item.user_id = @user.id
 
-
 		if params[:tag_names]
 			tags = []
 	    tag_names = params[:tag_names].split(', ')
-			tag_names.each do |tag_name|
-				tag = Tag.new(tag_name: tag_name)
-        existing_tag = Tag.where(slug: tag.slug)
-				if existing_tag.count == 0
-					tag.save
-				else
-					tag = existing_tag.first
+	    if tag_names.count > 3
+	    	flash[:error] = "You cannot have more than 3 tags."
+	    	return
+	    else
+				tag_names.each do |tag_name|
+					tag = Tag.find_or_create_by_tag_name(tag_name)
+					tags << tag
 				end
-				tags << tag
+				@news_item.tags.concat tags
 			end
-			@news_item.tags.concat tags
 		end
 
-#		@news_item.user = @user
-
 		if !@news_item.save
-      content = "Something went wrong - "
-      @news_item.errors.full_messages.each { |msg| content += "#{msg} : " }
-      flash[:error] = content
+      error_content ||= ""
+      @news_item.errors.full_messages.each { |msg| error_content += "#{msg} : " }
+      flash[:error] = error_content
     else
       #flash[:notice] = "News item was successfully created"
     end
 
-    render :nothing => true
+#		@news_item.user = @user
+
+
+
+    # render :nothing => true
 	end
 
 	def destroy
