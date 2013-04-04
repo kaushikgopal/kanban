@@ -2,7 +2,7 @@ class NewsController < ApplicationController
 	respond_to :js, :html
 
 	def index
-		@news_items = NewsItem.all
+		@news_items = NewsItem.news
 	end
 	def show
 		@news_item = NewsItem.find(params[:id])
