@@ -48,6 +48,8 @@ class NewsController < ApplicationController
     else
       #flash[:notice] = "News item was successfully created"
     end
+
+    render :nothing => true
 	end
 
 	def destroy
