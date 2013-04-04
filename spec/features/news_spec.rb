@@ -7,10 +7,10 @@ describe	'News Management' do
 	  end
 		it "shows the list of news items" do
 			visit news_path
-			page.should have_content 'NewsItems'
+			page.should have_content 'Bulletin Board - News'
 		end
 		it 'should have a new item created' do
-			create(:news_item, content: "Testing page should have this content - #{@random_string }")
+			create(:news_item_with_news_tag, content: "Testing page should have this content - #{@random_string }")
 			visit news_path
 			page.should have_content "Testing page should have this content - #{@random_string }"
 		end

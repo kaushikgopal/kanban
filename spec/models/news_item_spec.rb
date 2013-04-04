@@ -7,34 +7,10 @@ describe NewsItem do
     build(:news_item).should be_valid
   end
 
-  context "should have basic fields:" do
-    it "has content" do
-      expect(build(:news_item, content: nil)).to_not be_valid
-    end
-    it "should have a creator" do
-      expect(build(:news_item, user: nil)).to_not be_valid
-    end
-
-    describe "tags" do
-      it "can have tags" do
-        # news_item = create(:news_item)
-        # news_item.tags.create(:tag_name => "sample_tag")
-        # news_item.save
-        news_item = create(:news_item_with_tag)
-        news_item.tags.count.should == 1
-      end
-      it "cannot have more than 3 tags" do
-        news_item = create(:news_item)
-        tags = []
-        4.times { tags << create(:tag, news_item: news_item) }
-        # news_item.tags.concat tags
-        news_item.valid?
-        news_item.errors.messages[:tags].should include "You can only have maximum of 3 tags"
-      end
-    end
-
+  it "should have a scope to retive only 'news' items" do
+    expect(NewsItem.news.where_values).to eql(["tags.tag_name = 'news'"])
+    expect(NewsItem.news.joins_values).to eql([:tags])
   end
-
 
   context "should have an ordered method" do
     # State based testing
@@ -49,8 +25,39 @@ describe NewsItem do
     it "to retrieve news items in the descending order - using mocking and stubbing" do
       NewsItem.ordered.order_values.should == ['created_at DESC']
     end
+  end
+
+  context "should have basic fields:" do
+    it "has content" do
+      expect(build(:news_item, content: nil)).to_not be_valid
+    end
+    it "should have a creator" do
+      expect(build(:news_item, user: nil)).to_not be_valid
+    end
+
+    describe "tags" do
+      it "can have tags" do
+        # news_item = create(:news_item)
+        # news_item.tags.create(:tag_name => "sample_tag")
+        # news_item.save
+        news_item = create(:news_item_with_random_tag)
+        news_item.tags.count.should == 1
+      end
+      it "cannot have more than 3 tags" do
+        news_item = create(:news_item)
+        tags = []
+        4.times { tags << create(:tag, news_item: news_item) }
+        # news_item.tags.concat tags
+        news_item.valid?
+        # news_item.errors.messages[:tags].should include "You can only have maximum of 3 tags"
+        news_item.errors.messages[:base].should include "You can only have maximum of 3 tags"
+      end
+    end
 
   end
+
+
+
 
 
 end

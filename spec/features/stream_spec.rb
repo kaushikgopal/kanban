@@ -23,7 +23,7 @@ describe "Stream" do
       visit stream_path
     end
     it "should show the tag" do
-      @news_item = create(:news_item_with_tag)
+      @news_item = create(:news_item_with_random_tag)
       visit stream_path
       page.should have_content @news_item.tags[0].tag_name
     end
