@@ -23,19 +23,19 @@ FactoryGirl.define do
   factory :news_item do
     content Faker::Lorem.paragraph
     user
+  end
 
-    factory :news_item_with_random_tag, :class => NewsItem do
+    factory :news_item_with_random_tag, :parent => :news_item do
       after(:build) do |nit|
         nit.tags << FactoryGirl.create(:tag)
       end
     end
-    factory :news_item_with_news_tag, :class => NewsItem do
+    factory :news_item_with_news_tag, :parent => :news_item do
       after(:build) do |nit|
         nit.tags << FactoryGirl.create(:tag, tag_name: "news")
       end
     end
 
-  end
 
   factory :tag do
     sequence(:tag_name) { |n| "Tag #{n}"}
