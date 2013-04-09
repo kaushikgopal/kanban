@@ -13,9 +13,8 @@ class NewsItem < ActiveRecord::Base
 
   private
 
-  # TODO : Technically this doesn't do much. But we have a test case that checks this.
-  #      : We never actually show it from here on the view. Might as well remove and add a different condition for testing from the controller.
   def max_tag_limit
-  	errors.add(:tags, "You can only have maximum of 3 tags") if tags.count > 3
+  	#errors.add(:tags, "You can only have maximum of 3 tags") if tags.length > 3
+    errors[:base] << "You can only have maximum of 3 tags" if tags.length > 3
   end
 end

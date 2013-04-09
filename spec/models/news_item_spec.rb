@@ -47,18 +47,13 @@ describe NewsItem do
         news_item = create(:news_item)
         tags = []
         4.times { tags << create(:tag, news_item: news_item) }
-        # news_item.tags.concat tags
-        news_item.valid?
-        news_item.errors.messages[:tags].should include "You can only have maximum of 3 tags"
+        news_item.tags.concat tags
+
+        expect(news_item).to_not be_valid
+        news_item.errors.messages[:base].should include "You can only have maximum of 3 tags"
       end
     end
 
   end
 
-
-
-
-
 end
-
-
