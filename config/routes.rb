@@ -11,12 +11,16 @@ Kanban::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
+    match 'auth/:provider/callback', to: 'sessions#create'
+    match 'auth/failure', to: redirect("/")
+    match 'signout', to: 'sessions#destroy', as: 'signout'
+
   # Sample resource route (maps HTTP verbs to controller actions automatically):
     resources :news
     match "/news" => "news#index", :as => "news"
     match "/stream" => "news#stream", :as => "stream"
 
-  
+
 
   # Sample resource route with options:
   #   resources :products do
