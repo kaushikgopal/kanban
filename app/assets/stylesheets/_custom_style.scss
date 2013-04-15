@@ -58,7 +58,7 @@ button.ui-dialog-titlebar-close{
 	font-weight: bold;
 	text-align: center;
 
-	#flash_info, #flash_error {
+	#flash_info, #flash_error, #flash_notice {
 		background-color: $yellow-light;
 		border: 0.2em solid $yellow-dark;
 		padding: 0.7em;
