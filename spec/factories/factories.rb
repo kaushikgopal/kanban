@@ -21,7 +21,8 @@ FactoryGirl.define do
   end
 
   factory :news_item do
-    content Faker::Lorem.paragraph
+    # content Faker::Lorem.words(140)
+    content   "a" * 140
     user
   end
 

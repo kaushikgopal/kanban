@@ -12,6 +12,10 @@ describe NewsItem do
     expect(NewsItem.news.joins_values).to eql([:tags])
   end
 
+  it "should not allow more than 140 characters in the content" do
+    expect(build(:news_item, content: ("a"*141))).to_not be_valid
+  end
+
   context "should have an ordered method" do
     # State based testing
     it " to retrieve news items in the descending order" do

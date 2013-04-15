@@ -5,7 +5,12 @@ class NewsItem < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :user, :message => "News item needs a creator"
-  validates :content, :presence => { :message => "Your news item should have some content" }
+  validates :content,   :presence => { :message => "Your news item should have some content" },
+                        :length => { :maximum => 140, :message => 'Message is too long. Please keep it within 140' }
+                        # :length => {  :within => 0..140,
+                        #               :too_short => 'Message is too short',
+                        #               :too_long => 'Message is too long. Please keep it within 140' },
+
   validate :max_tag_limit, if: :tags
 
   scope :ordered, order("created_at DESC")
