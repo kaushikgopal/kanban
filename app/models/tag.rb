@@ -1,6 +1,8 @@
 class Tag < ActiveRecord::Base
   attr_accessible :tag_name, :slug
-  belongs_to :news_item
+
+  has_many :categorizations
+  has_many :news_items, through: :categorizations
 
   validates	:tag_name, :presence => { :message => "You need to have a tag name" }
   validates_uniqueness_of :slug
