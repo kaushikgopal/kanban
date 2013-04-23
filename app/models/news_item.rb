@@ -1,8 +1,9 @@
 class NewsItem < ActiveRecord::Base
   attr_accessible :content
 
-  has_many :tags
   belongs_to :user
+  has_many :tags, through: :categorizations
+  has_many :categorizations
 
   validates_presence_of :user, :message => "News item needs a creator"
   validates :content,   :presence => { :message => "Your news item should have some content" },
