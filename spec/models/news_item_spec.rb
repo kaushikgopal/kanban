@@ -50,8 +50,8 @@ describe NewsItem do
       it "cannot have more than 3 tags" do
         news_item = create(:news_item)
         tags = []
-        4.times { tags << create(:tag, news_item: news_item) }
-        news_item.tags.concat tags
+        4.times { tags << create(:tag) }
+        news_item.tags << tags
 
         expect(news_item).to_not be_valid
         news_item.errors.messages[:base].should include "You can only have maximum of 3 tags"

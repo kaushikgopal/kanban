@@ -1,11 +1,13 @@
 require 'spec_helper'
 
 describe "Stream" do
+  let(:user) { create(:user) }
   before(:all) do
     @random_string = "PhkOq6Fc57v8DlbcQFGxc0Or70i"
   end
 
   it "should be able to add a news_item" do
+    login_with_oauth
     visit stream_path
     click_link 'Add news item'
    	expect{
