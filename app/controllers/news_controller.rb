@@ -18,23 +18,24 @@ class NewsController < ApplicationController
 	end
 
 	def create
+
 		@news_item = NewsItem.new(params[:news_item])
-		@user = get_tmp_user
+
+		unless current_user
+			redirect_to root_url, notice: "You need to be signed in to create posts"
+		end
+
+		@user = current_user
     @news_item.user_id = @user.id
 
 		if params[:tag_names]
-			tags = []
+			tag_ids = []
 	    tag_names = params[:tag_names].split(', ')
-	    # if tag_names.count > 3
-	    # 	flash[:error] = "You cannot have more than 3 tags."
-	    # 	return
-	    # else
-				tag_names.each do |tag_name|
-					tag = Tag.find_or_create_by_tag_name(tag_name)
-					tags << tag
-				end
-				@news_item.tags.concat tags
-			# end
+    	tag_names.each do |tag_name|
+				tag = Tag.find_or_create_by_tag_name(tag_name)
+				tag_ids << tag.id
+			end
+			@news_item.tag_ids = tag_ids
 		end
 
 		if !@news_item.save
@@ -53,13 +54,6 @@ class NewsController < ApplicationController
 		respond_to do |format|
 			format.js { render "delete" }
 		end
-	end
-
-	private
-
-	def get_tmp_user
-		user = User.find_by_username('kaushikgopal')
-    user ||= User.create(username: 'kaushikgopal', email: 'tmp@kaush.co')
 	end
 
 end
