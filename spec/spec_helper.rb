@@ -39,4 +39,15 @@ RSpec.configure do |config|
 
   # Include Factory Girl syntax to simplify calls to factories
   config.include FactoryGirl::Syntax::Methods
+  config.include IntegrationSpecHelper, :type => :feature
+
+  Capybara.default_host = 'http://kanban.dev'
+
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.add_mock(:twitter, {
+    :uid => '12345',
+    :nickname => 'zapnap'
+  })
+
 end
+
