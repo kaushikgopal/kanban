@@ -78,12 +78,15 @@ describe NewsController do
 		  end
 		end
 		describe "POST #create" do
+			let(:user) { create(:user) }
 			it "should create a news_item" do
+				session[:user_id] = user.id
 				expect{
 					post :create, news_item: attributes_for(:news_item)
 				}.to change(NewsItem, :count).by(1)
 		  end
 		  it "should create a news_item - advanced mocking and stubbing" do
+				session[:user_id] = user.id
 		  	# build the mocks
 		  	# see http://stackoverflow.com/questions/3871966/testing-a-has-one-relationship for why a mock isn't suitable here
 		  	#news_item = NewsItem.new
