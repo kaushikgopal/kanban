@@ -10,7 +10,10 @@
     <% end %>
 </div>
 
-<a href="" id="new_news_item">Add news item</a>
+<% if current_user %>
+	<a href="" id="new_news_item">Add news item</a>
+<% end %>
+
 <%= render partial: "form" %>
 
 <div id="news_items_wrapper">
