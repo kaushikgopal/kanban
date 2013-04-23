@@ -5,7 +5,7 @@ class AddForeignkeyAssociationToNewsitem < ActiveRecord::Migration
   	add_column :news_items, :user_id, :integer
   end
   def down
-  	remove_column :news_item, :user_id
+  	remove_column :news_items, :user_id
   end
 
 end
