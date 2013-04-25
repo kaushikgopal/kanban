@@ -1,8 +1,19 @@
 <section id="header">
 	<% if current_user %>
 			Signed in as <%= current_user.preferred_name %>
-			<%= link_to "Sign out", signout_path %>
+			<%= link_to "Log out", signout_path %>
 	<% else %>
-		<%= link_to "Sign in with Twitter", "/auth/twitter" %>
+		<a href="" id="log_in">Log in</a>
 	<% end %>
+
+	<div id="sign_in_form">
+			<%= link_to "Sign in with Twitter", "/auth/twitter" %>
+			<br />
+			<%= link_to "Sign in with Facebook", "/auth/facebook" %>
+			<br />
+			<%= link_to "Sign in with github", "/auth/github" %>
+			<br />
+	</div>
+
+
 </section>

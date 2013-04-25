@@ -36,11 +36,18 @@ describe "Stream" do
     it "should show the stream content" do
       page.should have_content @news_item.content
     end
+
+    it "should have a login form" do
+      page.should have_selector('div#sign_in_form')
+      click_link 'Log in'
+    end
+
   end
 
   it "should be able to delete news_item" do
-    # TODO control this with Cancan
-    news_item = create(:news_item, content: "Test #{@random_string}")
+    login_with_twitter_default_user
+    # user = FactoryGirl.create :user
+    news_item = create(:news_item, content: "Test #{@random_string}", user: @user)
     visit stream_path
     expect{
       within "#ni_#{news_item.id}" do

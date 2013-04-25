@@ -35,6 +35,21 @@ h1{ text-align: center; color: $dark-cream; }
 	font-size: 2em;
 }
 
+// Modal overlay
+
+.ui-front {
+	z-index: 100;
+}
+.ui-widget-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #AAAA9A/*{bgColorOverlay}*/ url(images/ui-bg_flat_0_aaaaaa_40x100.png)/*{bgImgUrlOverlay}*/ 50%/*{bgOverlayXPos}*/ 50%/*{bgOverlayYPos}*/ repeat-x/*{bgOverlayRepeat}*/;
+	opacity: .5/*{opacityOverlay}*/;
+}
+
 button.ui-dialog-titlebar-close{
 	@include hide-text();
 	margin-top: -5px;

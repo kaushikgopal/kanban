@@ -18,8 +18,9 @@
 					<% end %>
 			</div>
 		<% end %>
-
 	</div>
-	<%= link_to "Delete", "/news/#{object.id}", :confirm => 'Are you sure?', :remote => true, :class=>'delete_news_item', :method => :delete %>
+	<% if current_user && current_user.username == object.user.username %>
+		<%= link_to "Delete", "/news/#{object.id}", :confirm => 'Are you sure?', :remote => true, :class=>'delete_news_item', :method => :delete %>
+	<% end %>
 </div>
 <% end %>

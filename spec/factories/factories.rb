@@ -19,6 +19,10 @@ FactoryGirl.define do
       preferred_name  Faker::Name.name
       twiki_name      Faker::Internet.user_name
     end
+
+    factory :user_twitter_oauth do
+      username "12345"
+    end
   end
 
   factory :news_item do

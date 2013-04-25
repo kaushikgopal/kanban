@@ -1,4 +1,12 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable#, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :username, :preferred_name, :twiki_name, :email, :provider
 
   has_many :news_items
@@ -8,7 +16,7 @@ class User < ActiveRecord::Base
               :presence => { :message => "You need to have a username" },
               :uniqueness => { :message => "Sorry that username has already been taken" }
   validates :email,
-              :uniqueness => { :message => "That email is already in use in the system" }
+              :uniqueness => { scope: [:provider], :message => "That email is already in use in the system" }
   validate :email_or_twiki_unless_oauth
 
   def self.from_omniauth(auth)
