@@ -200,7 +200,15 @@ button.ui-dialog-titlebar-close{
 		}
 }
 
-
+// Commong to pages with news_items --------------
+#news_items_wrapper .delete_news_item{
+ 	float: left;
+ 	margin: 50px 0 0 10px;
+ 	@include hide-text();
+ 	background: url('close.png') no-repeat right top;
+ 	width: $icon-large;
+	height: $icon-large;
+}
 
 // Stream page ----------------------
 #stream_content{
@@ -217,15 +225,6 @@ button.ui-dialog-titlebar-close{
 		cursor:pointer;
 		width: $icon-large;
 		height: $icon-large;
-	}
-	.delete_news_item{
-	 	float: left;
-	 	margin: 50px 0 0 10px;
-	 	@include hide-text();
-	 	background: url('close.png') no-repeat right top;
-	 	width: $icon-large;
-		height: $icon-large;
-
 	}
 
 }
